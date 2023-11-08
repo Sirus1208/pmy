@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>ToDo List</title>
+</head>
+<body>
+<a th:href="@{/search}" class="btn btn-primary">検索</a>
+<h1>新しいToDoを作成する</h1>
+<form th:action="@{/add}" th:object="${newTodo}" method="post">
+    <label>Todo名: <input type="text" th:field="*{title}" required></label><br>
+    <label>期限: <input type="date" th:field="*{deadline}" required></label>
+    <button type="submit">Todoの追加</button>
+</form>
+
+<table>
+    <tr>
+        <th></th>
+        <th>期限</th>
+        <th>作成日</th>
+        <th>状态</th>
+        <th>操作</th>
+    </tr>
+    <tr th:each="TodoEntity : ${todos}">
+        <td th:text="${TodoEntity.title}"></td>
+        <td th:text="${TodoEntity.deadline}"></td>
+        <td th:text="${TodoEntity.createTime}"></td>
+        <td>
+            <a th:href="@{/edit/{id}(id=${TodoEntity.id})}">編集</a>
+        </td>
+        <td>
+            <form th:action="@{/toggle-status/{id}(id=${TodoEntity.id})}" method="post">
+                <input type="submit" th:unless="${TodoEntity.status}" value="完了にする" style="color: blue;">
+                <input type="submit" th:if="${TodoEntity.status}" value="未完了にする" style="color: red;">
+            </form>
+
+        </td>
+    </tr>
+    </tr>
+</table>
+</body>
+</html>

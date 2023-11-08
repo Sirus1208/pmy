@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Error Page</title>
+</head>
+<body>
+<div style="text-align: center; margin-top: 50px;">
+    <h1>Error</h1>
+    <p>Error Message: <span th:text="${405:The requested method is not allowed.}"></span></p>
+
+    <p>
+        <a href="/">Back to Home</a>
+    </p>
+</div>
+</body>
+</html>

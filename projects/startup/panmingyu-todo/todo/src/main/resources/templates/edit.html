@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑ToDo</title>
+</head>
+<body>
+<h1>编辑ToDo</h1>
+<form th:action="@{/edit/{id}(id=${todo.id})}" th:object="${todo}" method="post">
+    <label>Todo名: <input type="text" th:field="*{title}" required></label>
+    <label>期限: <input type="date" th:field="*{deadline}" required></label>
+    <button type="submit">更新</button>
+</form>
+</body>
+</html>
